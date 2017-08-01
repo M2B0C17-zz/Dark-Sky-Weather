@@ -1,15 +1,56 @@
+/* 
+	font-family: 'Lato', sans-serif;
+	font-family: 'Roboto', sans-serif;
+*/
+
 *{
 	padding: 0;
 	margin: 0;
-	font-family: 'Lato', sans-serif;
-	font-family: 'Roboto', sans-serif;
 }
 
 body{
 
-	background-color: whitesmoke;
+	a{
+		text-decoration: none;
+	}
 
+	a:hover{
+		text-decoration: none;
+	}
+
+	.imgFondo{
+		width: 100%;
+		height: 100vh;
+		/* transform: rotate(90deg); */
+		z-index: 0;
+	}
 	
+	.fondoTranslucido{
+		width: 100%;
+		height: 80vh;
+		position: absolute;
+		-margin-top: 10px;
+		padding-top: 20px;
+		opacity: 1;
+		bottom: 45px;
+		background-color: rgba(0,0,0,0.6);
+	}
 
+	.btn{
+		color: white;
+		opacity: 1;
+		background-color: rgba(225, 225, 225,0.4);
+		padding: 15px;
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		margin-top: 80vh;
+	}
+
+	.btn:hover{
+		color: silver;
+		opacity: 1;
+		background-color: rgba(225, 225, 225,0.2);
+	}
 
 }

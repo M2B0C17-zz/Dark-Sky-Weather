@@ -1,3 +1,16 @@
+/* API Flickr */
+
+
+
+
+
+
+
+
+
+
+
+/*
 GET https://api.darksky.net/forecast/be1ca237eb8728cef3f22c0175668053/37.8267,-122.4233
 
 {
@@ -117,3 +130,5 @@ GET https://api.darksky.net/forecast/be1ca237eb8728cef3f22c0175668053/37.8267,-1
     ...
   }
 }
+
+*/
