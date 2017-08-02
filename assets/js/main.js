@@ -1,5 +1,57 @@
-/* API Flickr */
 
+$(document).ready(function(){
+  // Ubicación NO FUNCIONA
+  function buscar(){
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
+    }
+  }
+  window.addEventListener("load", buscar); 
+
+
+  // aún no funciona lo de abajo
+
+  var ajaxSummary = function(){
+    $.ajax({
+      url     : 'https://api.darksky.net/forecast/55dc81bcc884442855ef9789bd9076ca/37.8267,-122.4233?language=es?&units=auto',
+      type    : 'GET',
+      dataType: 'json',
+      data    : {'currently' : 7},
+    })
+    .done(function(data) {
+      console.log(data.currently.icon);
+      $("#iconosClima").append('<img src="dist/img/' + data.currently.icon + '.png">');
+    })
+    .fail(function() {
+      console.log("No podemos encontrar su ubicación");
+    })
+    .always(function() {
+      console.log("completado");
+    });
+  }
+/*
+  var iconAjax = function(){
+    $.ajax({
+      url     : 'https://api.darksky.net/forecast/55dc81bcc884442855ef9789bd9076ca/37.8267,-122.4233?language=es?&units=auto',
+      type    : 'GET',
+      dataType: 'json',
+      data    : {'time' : 1},
+    })
+    .done(function(data) {
+      console.log(data.time);
+      $("#fotoClima").append(data.time);
+    })
+    .fail(function() {
+      $("#fotoClima").append('<div class="text-center">No podemos encontrar su ubicación</div>');
+    })
+    .always(function() {
+      console.log("completado");
+    });
+  }
+*/
+
+
+});
 
 
 
@@ -11,7 +63,6 @@
 
 
 /*
-GET https://api.darksky.net/forecast/be1ca237eb8728cef3f22c0175668053/37.8267,-122.4233
 
 {
   "latitude": 47.20296790272209,

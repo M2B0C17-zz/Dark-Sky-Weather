@@ -10253,7 +10253,74 @@ return jQuery;
 } );
 
 /* API Flickr */
+$(document).ready(function(){
+  var ajaxSummary = function(){
+    $.ajax({
+      url     : 'https://api.darksky.net/forecast/55dc81bcc884442855ef9789bd9076ca/37.8267,-122.4233',
+      type    : 'GET',
+      dataType: 'json',
+      data    : {'summary' : 1},
+    })
+    .done(function(data) {
+      console.log(data.currently.summary);
+      $("#grados").append(data.currently.summary);
+    })
+    .fail(function() {
+      $("#grados").append('<div class="text-center">No podemos encontrar su ubicación</div>');
+    })
+    .always(function() {
+      console.log("complete");
+    });
+  }
 
+  var iconAjax = function(){
+    $.ajax({
+      url     : '',
+      type    : 'GET',
+      dataType: 'json',
+      data    : {'time' : 1},
+    })
+    .done(function(data) {
+      console.log(data.time);
+      $("#fotoClima").append(data.time);
+    })
+    .fail(function() {
+      $("#fotoClima").append('<div class="text-center">No podemos encontrar su ubicación</div>');
+    })
+    .always(function() {
+      console.log("complete");
+    });
+  }
+
+
+  // import
+import DarkSkyApi from 'https://api.darksky.net/forecast/55dc81bcc884442855ef9789bd9076ca/37.8267,-122.4233';
+
+// configure
+DarkSkyApi.apiKey = '55dc81bcc884442855ef9789bd9076ca';
+DarkSkyApi.postProcessor = (item) => { // must accept weather data item param
+
+  // add a nice date representation using moment.calender
+  item.dayNice = item.dateTime.calendar(null, {
+    sameDay: '[Today]',
+    nextDay: 'ddd',
+    nextWeek: 'ddd',
+    lastDay: '[Yesterday]',
+    lastWeek: '[Last] ddd',
+    sameElse: 'ddd'
+  });
+
+  // add units object onto item
+  item.units = DarkSkyApi.getResponseUnits(); // this would be outdated if you changed api units later
+
+  return item; // must return weather data item
+};
+
+// use 
+DarkSkyApi.loadCurrent()
+  .then(data => console.log(data.dayNice)); // Today
+
+}
 
 
 
@@ -10265,7 +10332,6 @@ return jQuery;
 
 
 /*
-GET https://api.darksky.net/forecast/be1ca237eb8728cef3f22c0175668053/37.8267,-122.4233
 
 {
   "latitude": 47.20296790272209,
